@@ -12,13 +12,18 @@ spec:
       labels:
         app: auth-mongo
     spec:
-      containers:
-        - name: auth-mongo
-          image: mongo
       volumes:
         - name: mongodb-storage
           persistentVolumeClaim:
             claimName: mongodb-pv-claim
+      containers:
+        - name: auth-mongo
+          image: mongo
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongodb-storage
+              mountPath: /data/db
 ---
 apiVersion: v1
 kind: Service
