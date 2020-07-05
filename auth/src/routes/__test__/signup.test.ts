@@ -26,7 +26,7 @@ it("Should not allow to create user with invalid email", async () => {
     .expect(400);
 });
 
-it("Should not allow to create user with invalid password", async () => {
+it("Should not allow to create user with invalid password. Has to be minimum of 6", async () => {
   return request(app)
     .post("/api/users/signup")
     .send({
